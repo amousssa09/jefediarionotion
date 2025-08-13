@@ -100,6 +100,29 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .combat-view {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            gap: 15px;
+        }
+
+        .combat-view.active {
+            display: flex;
+        }
+
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .list-view.hidden {
+            display: none;
         }
 
         .form-group {
@@ -189,6 +212,15 @@
             background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .boss-card.defeated {
+            opacity: 0.6;
+            background: rgba(100, 100, 100, 0.1);
+        }
+
+        .boss-card.defeated .boss-image {
+            filter: grayscale(100%);
         }
 
         .boss-header {
@@ -313,6 +345,358 @@
             align-items: center;
             justify-content: center;
         }
+
+        .hp-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 8px;
+            margin: 8px 0;
+            overflow: hidden;
+        }
+
+        .hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .combat-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .player-damage-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .player-damage-input input {
+            flex: 1;
+            padding: 6px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        .btn-attack {
+            background: linear-gradient(45deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 6px 12px;
+            font-size: 11px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-attack:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 75, 87, 0.4);
+        }
+
+        .btn-attack:disabled {
+            background: rgba(100, 100, 100, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-resurrect {
+            background: linear-gradient(45deg, #6bcf7f, #4ecdc4);
+            color: white;
+            padding: 6px 12px;
+            font-size: 11px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-resurrect:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(107, 207, 127, 0.4);
+        }
+
+        .hp-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .status-defeated {
+            color: #ff6b6b;
+            font-weight: bold;
+            text-align: center;
+            padding: 4px;
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .combat-container {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .boss-combat-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .player-combat-card {
+            flex: 1;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .combat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .combat-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: linear-gradient(45deg, #6c757d, #495057);
+            color: white;
+            padding: 8px 16px;
+            font-size: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .large-boss-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .player-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .large-hp-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            height: 15px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .large-hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ffd93d 50%, #6bcf7f 100%);
+            transition: width 0.5s ease;
+            border-radius: 15px;
+        }
+
+        .player-hp-fill {
+            background: linear-gradient(90deg, #4ecdc4 0%, #44a08d 100%);
+        }
+
+        .combat-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .large-stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .large-stat-label {
+            font-size: 12px;
+            color: #ccc;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .large-stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .player-actions {
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .damage-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .damage-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .btn-large-attack {
+            width: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-large-attack:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 75, 87, 0.4);
+        }
+
+        .btn-large-attack:disabled {
+            background: rgba(100, 100, 100, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-select-boss {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 6px 12px;
+            font-size: 11px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .btn-select-boss:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .victory-message {
+            background: linear-gradient(45deg, #6bcf7f, #4ecdc4);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            animation: victoryPulse 2s infinite;
+        }
+
+        @keyframes victoryPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .defeat-message {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            animation: defeatShake 0.5s;
+        }
+
+        @keyframes defeatShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .special-attacks-combat {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .special-attack-btn {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            color: white;
+            padding: 8px;
+            border-radius: 6px;
+            margin: 3px 0;
+            font-size: 11px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .special-attack-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body>
@@ -384,8 +768,78 @@
             </div>
 
             <div class="boss-list">
-                <h3>Jefes <span id="currentType">Dragones</span></h3>
-                <div id="bossContainer"></div>
+                <div class="list-view" id="listView">
+                    <h3>Jefes <span id="currentType">Dragones</span></h3>
+                    <div id="bossContainer"></div>
+                </div>
+                
+                <div class="combat-view" id="combatView">
+                    <div class="combat-header">
+                        <h3 class="combat-title">⚔️ Combate</h3>
+                        <button class="btn-back" onclick="exitCombat()">← Volver a Lista</button>
+                    </div>
+                    
+                    <div class="combat-container">
+                        <div class="boss-combat-card">
+                            <img id="combatBossImage" class="large-boss-image" alt="Jefe">
+                            <h2 id="combatBossName">Nombre del Jefe</h2>
+                            <div class="large-hp-bar">
+                                <div id="combatBossHPBar" class="large-hp-fill"></div>
+                            </div>
+                            <div id="combatBossHPText" class="hp-text">HP: 1000/1000</div>
+                            
+                            <div class="combat-stats">
+                                <div class="large-stat">
+                                    <div class="large-stat-label">Ataque</div>
+                                    <div id="combatBossAttack" class="large-stat-value">150</div>
+                                </div>
+                                <div class="large-stat">
+                                    <div class="large-stat-label">EXP</div>
+                                    <div id="combatBossExp" class="large-stat-value">500</div>
+                                </div>
+                            </div>
+                            
+                            <div id="combatBossSpecialAttacks" class="special-attacks-combat"></div>
+                            
+                            <div id="combatMessages"></div>
+                        </div>
+                        
+                        <div class="player-combat-card">
+                            <div class="player-avatar">⚔️</div>
+                            <h2>Jugador</h2>
+                            <div class="large-hp-bar">
+                                <div id="playerHPBar" class="large-hp-fill player-hp-fill"></div>
+                            </div>
+                            <div id="playerHPText" class="hp-text">HP: 100/100</div>
+                            
+                            <div class="combat-stats">
+                                <div class="large-stat">
+                                    <div class="large-stat-label">HP Máx</div>
+                                    <div id="playerMaxHP" class="large-stat-value">100</div>
+                                </div>
+                                <div class="large-stat">
+                                    <div class="large-stat-label">Ataque</div>
+                                    <div id="playerAttack" class="large-stat-value">25</div>
+                                </div>
+                            </div>
+                            
+                            <div class="player-actions">
+                                <div class="damage-input-group">
+                                    <input type="number" id="playerMaxHPInput" class="damage-input" placeholder="HP Máx" min="1" value="100">
+                                    <input type="number" id="playerDamageInput" class="damage-input" placeholder="Tu Daño" min="1" value="25">
+                                </div>
+                                
+                                <button id="attackButton" class="btn-large-attack" onclick="playerAttack()">
+                                    ⚔️ Atacar
+                                </button>
+                                
+                                <button id="resetCombatButton" class="btn-resurrect" onclick="resetCombat()">
+                                    🔄 Reiniciar Combate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -399,12 +853,24 @@
             elemental: []
         };
         let specialAttacks = [];
+        let currentCombatBoss = null;
+        let playerCurrentHP = 100;
+        let playerMaxHP = 100;
+        let playerDamage = 25;
 
         // Cargar datos del localStorage
         function loadData() {
             const savedBosses = localStorage.getItem('bosses');
             if (savedBosses) {
                 bosses = JSON.parse(savedBosses);
+                // Asegurar que todos los jefes tengan HP actual
+                Object.keys(bosses).forEach(type => {
+                    bosses[type].forEach(boss => {
+                        if (boss.currentHP === undefined) {
+                            boss.currentHP = boss.hp;
+                        }
+                    });
+                });
             }
         }
 
@@ -498,6 +964,7 @@
                 name,
                 image: image || 'https://via.placeholder.com/100x100?text=Boss',
                 hp,
+                currentHP: hp,
                 damage,
                 exp,
                 attackSchedule: {
@@ -540,7 +1007,7 @@
             }
 
             container.innerHTML = currentBosses.map(boss => `
-                <div class="boss-card">
+                <div class="boss-card ${boss.currentHP <= 0 ? 'defeated' : ''}">
                     <button class="delete-btn btn-danger" onclick="deleteBoss(${boss.id})">×</button>
                     
                     <div class="boss-header">
@@ -551,9 +1018,17 @@
                         </div>
                     </div>
 
+                    <div class="hp-text">
+                        <span>HP:</span>
+                        <span>${boss.currentHP}/${boss.hp}</span>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: ${(boss.currentHP / boss.hp) * 100}%"></div>
+                    </div>
+
                     <div class="boss-stats">
                         <div class="stat">
-                            <div class="stat-label">HP</div>
+                            <div class="stat-label">HP Máx</div>
                             <div class="stat-value">${boss.hp.toLocaleString()}</div>
                         </div>
                         <div class="stat">
@@ -580,8 +1055,169 @@
                             `).join('')}
                         </div>
                     ` : ''}
+
+                    ${boss.currentHP <= 0 ? 
+                        '<div class="status-defeated">💀 DERROTADO</div>' + 
+                        '<button class="btn-resurrect" onclick="resurrectBoss(' + boss.id + ')">🔄 Resucitar</button>'
+                        : 
+                        '<button class="btn-select-boss" onclick="enterCombat(' + boss.id + ')">⚔️ Combatir</button>'
+                    }
                 </div>
             `).join('');
+        }
+
+        // Entrar en combate
+        function enterCombat(bossId) {
+            const boss = findBossById(bossId);
+            if (!boss || boss.currentHP <= 0) return;
+
+            currentCombatBoss = boss;
+            
+            // Configurar vista de combate
+            document.getElementById('combatBossImage').src = boss.image;
+            document.getElementById('combatBossImage').onerror = function() { this.src = 'https://via.placeholder.com/120x120?text=Boss'; };
+            document.getElementById('combatBossName').textContent = boss.name;
+            
+            // Configurar ataques especiales del jefe
+            const specialAttacksContainer = document.getElementById('combatBossSpecialAttacks');
+            specialAttacksContainer.innerHTML = boss.specialAttacks.length > 0 ? 
+                '<strong>⚡ Ataques Especiales:</strong>' + 
+                boss.specialAttacks.map(attack => 
+                    `<button class="special-attack-btn">${attack.name} - ${attack.damage} daño</button>`
+                ).join('') : '';
+
+            // Obtener valores del jugador
+            const playerMaxHPInput = document.getElementById('playerMaxHPInput');
+            const playerDamageInput = document.getElementById('playerDamageInput');
+            
+            playerMaxHP = parseInt(playerMaxHPInput.value) || 100;
+            playerDamage = parseInt(playerDamageInput.value) || 25;
+            playerCurrentHP = playerMaxHP;
+
+            updateCombatDisplay();
+            
+            // Cambiar a vista de combate
+            document.getElementById('listView').classList.add('hidden');
+            document.getElementById('combatView').classList.add('active');
+        }
+
+        // Salir del combate
+        function exitCombat() {
+            currentCombatBoss = null;
+            document.getElementById('listView').classList.remove('hidden');
+            document.getElementById('combatView').classList.remove('active');
+            document.getElementById('combatMessages').innerHTML = '';
+        }
+
+        // Actualizar display de combate
+        function updateCombatDisplay() {
+            if (!currentCombatBoss) return;
+
+            // Actualizar HP del jefe
+            const bossHPPercentage = (currentCombatBoss.currentHP / currentCombatBoss.hp) * 100;
+            document.getElementById('combatBossHPBar').style.width = bossHPPercentage + '%';
+            document.getElementById('combatBossHPText').textContent = `HP: ${currentCombatBoss.currentHP}/${currentCombatBoss.hp}`;
+            document.getElementById('combatBossAttack').textContent = currentCombatBoss.damage;
+            document.getElementById('combatBossExp').textContent = currentCombatBoss.exp;
+
+            // Actualizar HP del jugador
+            const playerHPPercentage = (playerCurrentHP / playerMaxHP) * 100;
+            document.getElementById('playerHPBar').style.width = playerHPPercentage + '%';
+            document.getElementById('playerHPText').textContent = `HP: ${playerCurrentHP}/${playerMaxHP}`;
+            document.getElementById('playerMaxHP').textContent = playerMaxHP;
+            document.getElementById('playerAttack').textContent = playerDamage;
+
+            // Actualizar inputs del jugador
+            document.getElementById('playerMaxHPInput').value = playerMaxHP;
+            document.getElementById('playerDamageInput').value = playerDamage;
+
+            // Controlar botón de ataque
+            const attackButton = document.getElementById('attackButton');
+            const canAttack = playerCurrentHP > 0 && currentCombatBoss.currentHP > 0;
+            attackButton.disabled = !canAttack;
+        }
+
+        // Ataque del jugador
+        function playerAttack() {
+            if (!currentCombatBoss || playerCurrentHP <= 0 || currentCombatBoss.currentHP <= 0) return;
+
+            // Actualizar valores del jugador desde los inputs
+            const newMaxHP = parseInt(document.getElementById('playerMaxHPInput').value) || playerMaxHP;
+            const newDamage = parseInt(document.getElementById('playerDamageInput').value) || playerDamage;
+            
+            // Si cambió el HP máximo, ajustar HP actual proporcionalmente
+            if (newMaxHP !== playerMaxHP) {
+                const hpRatio = playerCurrentHP / playerMaxHP;
+                playerMaxHP = newMaxHP;
+                playerCurrentHP = Math.round(playerMaxHP * hpRatio);
+            }
+            playerDamage = newDamage;
+
+            const messagesContainer = document.getElementById('combatMessages');
+            
+            // Jugador ataca
+            currentCombatBoss.currentHP = Math.max(0, currentCombatBoss.currentHP - playerDamage);
+            messagesContainer.innerHTML = `<div style="color: #4ecdc4; margin-bottom: 10px;">⚔️ ¡Atacaste por ${playerDamage} de daño!</div>`;
+
+            // Verificar si el jefe fue derrotado
+            if (currentCombatBoss.currentHP <= 0) {
+                messagesContainer.innerHTML += `<div class="victory-message">🏆 ¡Derrotaste a ${currentCombatBoss.name}! Ganaste ${currentCombatBoss.exp} EXP</div>`;
+                saveData();
+                updateCombatDisplay();
+                displayBosses();
+                return;
+            }
+
+            // Jefe ataca de vuelta
+            setTimeout(() => {
+                if (currentCombatBoss.currentHP > 0 && playerCurrentHP > 0) {
+                    playerCurrentHP = Math.max(0, playerCurrentHP - currentCombatBoss.damage);
+                    messagesContainer.innerHTML += `<div style="color: #ff6b6b; margin-bottom: 10px;">💥 ${currentCombatBoss.name} te atacó por ${currentCombatBoss.damage} de daño!</div>`;
+                    
+                    if (playerCurrentHP <= 0) {
+                        messagesContainer.innerHTML += `<div class="defeat-message">💀 ¡Has sido derrotado!</div>`;
+                    }
+                    
+                    updateCombatDisplay();
+                }
+            }, 1000);
+
+            saveData();
+            updateCombatDisplay();
+            displayBosses();
+        }
+
+        // Reiniciar combate
+        function resetCombat() {
+            if (!currentCombatBoss) return;
+            
+            currentCombatBoss.currentHP = currentCombatBoss.hp;
+            playerCurrentHP = playerMaxHP;
+            
+            document.getElementById('combatMessages').innerHTML = '<div style="color: #6bcf7f; text-align: center;">🔄 Combate reiniciado</div>';
+            
+            saveData();
+            updateCombatDisplay();
+            displayBosses();
+        }
+
+        // Encontrar jefe por ID
+        function findBossById(id) {
+            for (let type in bosses) {
+                const boss = bosses[type].find(b => b.id === id);
+                if (boss) return boss;
+            }
+            return null;
+        }
+
+        // Resucitar jefe
+        function resurrectBoss(id) {
+            const boss = findBossById(id);
+            if (boss) {
+                boss.currentHP = boss.hp;
+                saveData();
+                displayBosses();
+            }
         }
 
         // Eliminar jefe
